@@ -108,6 +108,16 @@ requestOptions.auth = {
 default `undefined`, [proxy to the request timeout option](https://github.com/request/request)
 
 
+#### Callbacks
+#### `success(json, apiResponse, statusCode)`
+#### `error(moduleError, [apiResponse, statusCode])`
+#### `complete(moduleError, isApiSuccess, [apiResponse, statusCode])`
+- `json` object
+- `apiResponse` [request response object](https://github.com/request/request)
+- `statusCode` int
+- `moduleError` Error instance
+
+
 ------
 
 Backbone tests were copied form [artsy/backbone-super-sync](https://github.com/artsy/backbone-super-sync)
