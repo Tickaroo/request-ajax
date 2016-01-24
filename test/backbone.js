@@ -121,6 +121,8 @@ describe('Backbone.ajax', function() {
       model.fetch({
         accessToken: true,
         complete: function(error, isSuccess, res) {
+          (error === undefined).should.equal(true);
+          isSuccess.should.equal(false);
           JSON.parse(res.body).message.should.equal("Not Found");
           done();
         }
