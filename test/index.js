@@ -186,6 +186,56 @@ describe('request-ajax', function() {
     });
   });
 
+  it('should let `accessToken` win over `apiClientId, origin`', function(done) {
+    ajax({
+      url: 'http://localhost:1235/users',
+      method: 'POST',
+      accessToken: '1234',
+      apiClientId: 'foobar',
+      origin: 'moo',
+      error: function() {},
+      complete: function(error, isSuccess, res) {
+        expect(res.request.headers.authorization).to.equal('Bearer 1234');
+        expect(res.request.headers.Authorization).to.equal(undefined);
+        expect(res.request.headers.Origin).to.equal(undefined);
+        done();
+      }
+    });
+  });
+
+  it('should let `accessToken` win over `clientId, clientSecret`', function(done) {
+    ajax({
+      url: 'http://localhost:1235/users',
+      method: 'POST',
+      accessToken: '1234',
+      clientId: 'foobar',
+      clientSecret: 'moo',
+      error: function() {},
+      complete: function(error, isSuccess, res) {
+        expect(res.request.headers.authorization).to.equal('Bearer 1234');
+        expect(res.request.headers.Authorization).to.equal(undefined);
+        done();
+      }
+    });
+  });
+
+  it('should let `apiClientId, origin` win over `clientId, clientSecret`', function(done) {
+    ajax({
+      url: 'http://localhost:1235/users',
+      method: 'POST',
+      apiClientId: 'meeh',
+      origin: 'moo',
+      clientId: 'foobar',
+      clientSecret: 'moo',
+      error: function() {},
+      complete: function(error, isSuccess, res) {
+        expect(res.request.headers.authorization).to.equal(undefined);
+        expect(res.request.headers.Authorization).to.equal('Basic ' + new Buffer('meeh:').toString('base64'));
+        done();
+      }
+    });
+  });
+
   it('should use apiClientId', function(done) {
     ajax({
       url: 'http://localhost:1235/users',

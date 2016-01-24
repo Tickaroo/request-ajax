@@ -42,8 +42,6 @@ app.get('/', function(req, res, next){
 
 ## Options
 
-Variables provided with the error:
-
 #### `url`, required
 
 API url, `https` will be removed from the url
@@ -109,3 +107,7 @@ requestOptions.auth = {
 #### `timeout`
 default `undefined`, [proxy to the request timeout option](https://github.com/request/request)
 
+
+------
+
+Backbone tests were copied form [artsy/backbone-super-sync](https://github.com/artsy/backbone-super-sync)
