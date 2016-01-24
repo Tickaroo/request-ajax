@@ -54,7 +54,17 @@ describe('Backbone.ajax', function() {
       model.fetch({
         accessToken: true,
         error: function(model, error) {
-          error.toString().should.containEql("ECONNREFUSED");
+          error.toString().should.containEql('ECONNREFUSED');
+          done();
+        }
+      });
+    });
+
+    it("can handle true errors 2", function(done) {
+      model.url = 'http://localhost:5001/trueerr';
+      model.fetch({
+        error: function(model, error) {
+          error.toString().should.containEql('Error: no auth mechanism defined');
           done();
         }
       });
