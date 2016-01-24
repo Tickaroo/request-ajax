@@ -42,8 +42,8 @@ describe('Backbone.ajax', function() {
       model.url = 'http://localhost:5000/err';
       model.fetch({
         accessToken: true,
-        error: function(res) {
-          res.url.should.equal(model.url);
+        error: function(model, error, options) {
+          options.xhr.href.should.equal(model.url);
           done();
         }
       });
@@ -53,8 +53,8 @@ describe('Backbone.ajax', function() {
       model.url = 'http://localhost:5001/trueerr';
       model.fetch({
         accessToken: true,
-        error: function(model, res) {
-          res.toString().should.containEql("ECONNREFUSED");
+        error: function(model, error) {
+          error.toString().should.containEql("ECONNREFUSED");
           done();
         }
       });
@@ -121,7 +121,7 @@ describe('Backbone.ajax', function() {
       model.url = 'http://localhost:5000/err';
       model.fetch({
         accessToken: true,
-        error: function(model, res, options) {
+        error: function(model, error, options) {
           JSON.parse(options.xhr.response.body).message.should.equal("Not Found");
           done();
         }
@@ -170,7 +170,7 @@ describe('Backbone.ajax', function() {
       model.url = 'http://localhost:5000/err';
       model.fetch({
         accessToken: true,
-        error: function(model, res, options) {
+        error: function(model, err, options) {
           options.xhr.uri.href.should.equal(model.url);
           done();
         }
