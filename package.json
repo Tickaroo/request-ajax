@@ -1,6 +1,6 @@
 {
   "name": "request-ajax",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "HTTP request client for APIs, based on request",
   "main": "index.js",
   "directories": {
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com/tickaroo/request-ajax"
+    "url": "git+ssh://git@github.com/Tickaroo/request-ajax.git"
   },
   "dependencies": {
     "lodash": "^4.0.1",
