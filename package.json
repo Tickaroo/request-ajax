@@ -1,6 +1,6 @@
 {
   "name": "request-ajax",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "HTTP request client for APIs, based on request",
   "main": "index.js",
   "directories": {
