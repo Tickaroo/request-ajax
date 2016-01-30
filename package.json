@@ -17,17 +17,17 @@
     "url": "git+ssh://git@github.com/Tickaroo/request-ajax.git"
   },
   "dependencies": {
-    "lodash": "^4.0.1",
-    "request": "^2.67.0"
+    "lodash": "^4.1.0",
+    "request": "^2.69.0"
   },
   "devDependencies": {
     "backbone": "^1.2.3",
     "body-parser": "^1.14.2",
-    "chai": "^3.3.0",
+    "chai": "^3.5.0",
     "express": "^4.13.4",
     "istanbul": "^0.4.0",
     "jshint": "^2.9.1",
-    "mocha": "^2.4.2",
+    "mocha": "^2.4.5",
     "should": "^8.2.1"
   },
   "keywords": [
