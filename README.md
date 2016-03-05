@@ -1,4 +1,4 @@
-# request-ajax [![npm version](https://badge.fury.io/js/request-ajax.svg)](https://www.npmjs.com/package/request-ajax) [![Build Status](https://travis-ci.org/Tickaroo/request-ajax.svg?branch=master)](https://travis-ci.org/Tickaroo/request-ajax)
+# request-ajax [![npm version](https://badge.fury.io/js/request-ajax.svg)](https://www.npmjs.com/package/request-ajax) [![Build Status](https://travis-ci.org/Tickaroo/request-ajax.svg?branch=master)](https://travis-ci.org/Tickaroo/request-ajax) [![codecov.io](https://codecov.io/github/Tickaroo/request-ajax/coverage.svg?branch=master)](https://codecov.io/github/Tickaroo/request-ajax?branch=master)
 
 HTTP request client for APIs, based on request
 
