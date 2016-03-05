@@ -163,6 +163,20 @@ describe('Backbone.ajax', function() {
         }
       });
     });
+
+    it('does prefilterUrl', function(done) {
+      model.url = 'http://foo.com:5000/custom/url';
+      model.fetch({
+        accessToken: true,
+        prefilterUrl: function(url) {
+          return url && url.replace(new RegExp('^http://foo.com'), 'http://localhost');
+        },
+        success: function(model, res, options) {
+          options.xhr.uri.href.should.equal('http://localhost:5000/custom/url');
+          done();
+        }
+      });
+    });
   });
 
   context('POST requests', function() {

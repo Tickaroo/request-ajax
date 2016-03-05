@@ -46,10 +46,20 @@ app.get('/', function(req, res, next){
 
 API url, `https` will be removed from the url
 
-#### `allowHTTPS`
-default `false`
+#### `prefilterUrl`
+default `undefined`
 
-if `false`: HTTPS requests are changed to HTTP
+if `function`: this function will be called to let you replace the url with something different.
+For example: replacing `https://` with `http://` or using a local DNS/IP.
+
+```javascript
+ajax({
+  url: 'https://my-api.com/users.json',
+  prefilterUrl: function(url) {
+    return url && url.replace(new RegExp('^https://'), 'http://');
+  }
+});
+```
 
 #### `method`
 default `'GET'`

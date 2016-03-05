@@ -147,31 +147,6 @@ describe('request-ajax', function() {
     });
   });
 
-  it('should remove "https" form url', function(done) {
-    ajax({
-      url: 'https://localhost:1235/users',
-      accessToken: true,
-      error: function() {},
-      complete: function(error, isSuccess, res) {
-        expect(res.request.uri.protocol).to.equal('http:');
-        done();
-      }
-    });
-  });
-
-  it('should allow "https" form url', function(done) {
-    ajax({
-      url: 'https://localhost:1235/users',
-      allowHTTPS: true,
-      accessToken: true,
-      error: function(error) {
-        // https request fails because api.js can't handle it
-        expect(error.toString()).to.equal('Error: socket hang up');
-        done();
-      }
-    });
-  });
-
   it('should use locale', function(done) {
     ajax({
       url: 'http://localhost:1235/users',
@@ -274,6 +249,35 @@ describe('request-ajax', function() {
       complete: function(error, isSuccess, res) {
         expect(res.request._auth.user).to.equal('foo');
         expect(res.request._auth.pass).to.equal('bar');
+        done();
+      }
+    });
+  });
+
+  it('should not prefilterUrl', function(done) {
+    ajax({
+      url: 'http://localhost:1235/users',
+      dataType: 'json',
+      accessToken: true,
+      error: function() {},
+      success: function(data, res) {
+        expect(res.request.href).to.equal('http://localhost:1235/users');
+        done();
+      }
+    });
+  });
+
+  it('should prefilterUrl', function(done) {
+    ajax({
+      url: 'http://localhost:1235/users',
+      dataType: 'json',
+      accessToken: true,
+      error: function() {},
+      prefilterUrl: function(url) {
+        return url && url.replace(new RegExp('^https://'), 'http://');
+      },
+      success: function(data, res) {
+        expect(res.request.href).to.equal('http://localhost:1235/users');
         done();
       }
     });

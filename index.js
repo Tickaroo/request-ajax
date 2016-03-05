@@ -1,12 +1,6 @@
 var request = require('request');
 var _ = require('lodash');
 
-function removeHTTPS(url) {
-  if (url) {
-    return url.replace(/^https\:\/\//, 'http://');
-  }
-}
-
 module.exports = function(opts) {
   var options, optionsError, requestOptions;
   options = opts ? opts : {};
@@ -15,7 +9,7 @@ module.exports = function(opts) {
     headers: options.headers || {},
     timeout: options.timeout,
     method: options.method || options.type || 'GET',
-    url: options.allowHTTPS ? options.url : removeHTTPS(options.url)
+    url: options.prefilterUrl ? options.prefilterUrl(options.url) : options.url
   };
   request.debug = options.debug;
 
