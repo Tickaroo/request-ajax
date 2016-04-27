@@ -16,7 +16,6 @@
     "url": "git+ssh://git@github.com/Tickaroo/request-ajax.git"
   },
   "dependencies": {
-    "lodash": "^4.6.1",
     "request": "^2.69.0"
   },
   "devDependencies": {

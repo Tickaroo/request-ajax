@@ -1,5 +1,4 @@
 var request = require('request');
-var _ = require('lodash');
 
 module.exports = function(opts) {
   var options, optionsError, requestOptions;
@@ -18,7 +17,7 @@ module.exports = function(opts) {
       requestOptions.qs = options.data;
     }
     else {
-      if (_.isString(options.data)) {
+      if (typeof options.data === 'string') {
         requestOptions.json = JSON.parse(options.data);
       }
       else {
@@ -32,7 +31,7 @@ module.exports = function(opts) {
   }
 
   if (options.locale) {
-    requestOptions.headers = _.extend({
+    requestOptions.headers = Object.assign({
       'Accept-Language': options.locale
     }, options.headers);
   }
@@ -68,7 +67,7 @@ module.exports = function(opts) {
     else {
       if (isApiSuccess) {
         if (options.success) {
-          if (_.isString(body)) {
+          if (typeof body === 'string') {
             options.success(JSON.parse(body), response, statusCode);
           }
           else {
